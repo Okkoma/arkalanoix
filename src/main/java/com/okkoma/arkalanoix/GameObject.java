@@ -1,11 +1,12 @@
 package com.okkoma.arkalanoix;
 
-import javafx.geometry.Rectangle2D;
+import java.awt.Rectangle;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public abstract class GameObject {
-	protected Rectangle2D rect_;
+	protected Rectangle rect_;
 	protected Color color_;
 	protected boolean isDestroyed_;
     
@@ -15,9 +16,9 @@ public abstract class GameObject {
         this.isDestroyed_ = false; 
 	}
 	
-    public GameObject(double x, double y, double width, double height, Color color) {
+    public GameObject(int x, int y, int width, int height, Color color) {
     	
-    	this.rect_ = new Rectangle2D(x, y, width, height);
+    	this.rect_ = new Rectangle(x, y, width, height);
         this.color_ = color;
     }
     
@@ -27,7 +28,7 @@ public abstract class GameObject {
         isDestroyed_ = true;
     }
 
-    public Rectangle2D getRect() {
+    public Rectangle getRect() {
         return rect_;
     }
     

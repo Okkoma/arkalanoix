@@ -1,5 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Rectangle;
+
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -25,9 +27,9 @@ public class Bonus extends GameObject {
 	};
 	
     private int type_; // Type de bonus (ex: 1 = agrandit la raquette, 2 = vie supplémentaire, etc.)
-    private double speed_ = 2.0; // Vitesse de chute du bonus
+    private int speed_ = 2; // Vitesse de chute du bonus
     
-    public Bonus(double x, double y, double width, double height, int type) {
+    public Bonus(int x, int y, int width, int height, int type) {
         super(x, y, width, height, Bonus.BonusType.Colors[type]);
         type_ = type;        
     }
@@ -48,11 +50,11 @@ public class Bonus extends GameObject {
 
     // Méthode pour faire tomber le bonus
     public void fall() {
-        rect_ = new javafx.geometry.Rectangle2D(
-            rect_.getMinX(),
-            rect_.getMinY() + speed_,
-            rect_.getWidth(),
-            rect_.getHeight()
+        rect_ = new Rectangle(
+            rect_.x,
+            rect_.y + speed_,
+            rect_.width,
+            rect_.height
         );
     }
 

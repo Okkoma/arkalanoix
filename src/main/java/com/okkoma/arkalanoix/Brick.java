@@ -1,5 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Rectangle;
+
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -9,7 +11,7 @@ public class Brick extends GameObject {
 	private int resistance_;
 	private int hitPoints_;
 	
-    public Brick(double x, double y, double width, double height, Color color, int type) {
+    public Brick(int x, int y, int width, int height, Color color, int type) {
         super(x, y, width, height, color);
         type_ = type;
         resistance_ = type == 2 ? 2 : 1;

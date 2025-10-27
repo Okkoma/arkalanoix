@@ -1,22 +1,22 @@
 package com.okkoma.arkalanoix;
 
-import javafx.geometry.Rectangle2D;
+import java.awt.Rectangle;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Ball extends GameObject {
 
-    private double dx_ = 1, dy_ = -1;
-	private float defaultSpeed_ = 3.f;
-    private float speed_;
+	private final int defaultSpeed_ = 3;
+    private final int stickOverlap = 1;
+    private int dx_ = 1, dy_ = -1;
+    private int speed_;
     private GameObject parent_ = null;
-    private double relx_, rely_;
+    private int relx_, rely_;
     private int steel_;
-    private
-    final int stickOverlap = 1;
     
-    public Ball(double x, double y, double diameter, Color color) {
-    	this.rect_ = new Rectangle2D(x, y, diameter, diameter);
+    public Ball(int x, int y, int diameter, Color color) {
+    	this.rect_ = new Rectangle(x, y, diameter, diameter);
         color_ = color;
         isDestroyed_ = false;     
         speed_ = defaultSpeed_;
@@ -25,8 +25,8 @@ public class Ball extends GameObject {
 
     public void move() {
     	if (parent_ == null) {
-	    	rect_ = new Rectangle2D(rect_.getMinX() + dx_ * speed_, rect_.getMinY() + dy_ * speed_, 
-	    							rect_.getWidth(), rect_.getHeight());
+	    	rect_ = new Rectangle(rect_.x + dx_ * speed_, rect_.y + dy_ * speed_, 
+	    							rect_.width, rect_.height);
 	        // bounce on border 
 	    	if (rect_.getMinX() <= 0 || rect_.getMinX() + rect_.getWidth() >= GameScene.screenWidth)
 	        	dx_ *= -1;
@@ -35,28 +35,28 @@ public class Ball extends GameObject {
 	        else if (rect_.getMinY() >= GameScene.screenHeight)
 	        	isDestroyed_ = true;
     	} else {
-	    	rect_ = new Rectangle2D(parent_.getRect().getMinX() + relx_, parent_.getRect().getMinY() + rely_, 
-									rect_.getWidth(), rect_.getHeight());
+	    	rect_ = new Rectangle(parent_.getRect().x + relx_, parent_.getRect().y + rely_, 
+									rect_.width, rect_.height);
     	}
     }
     
     public void putOver(GameObject other) {
     	
-    	rect_ = new Rectangle2D(rect_.getMinX(), other.getRect().getMinY() - rect_.getHeight(), 
-								rect_.getWidth(), rect_.getHeight());    	    	
+    	rect_ = new Rectangle(rect_.x, other.getRect().y - rect_.height, 
+								rect_.width, rect_.height);    	    	
     }
     
     public void stickOn(GameObject other, boolean xCentered) {
     	
-    	double x = xCentered ? other.getRect().getMinX() + other.getRect().getWidth()/2 - rect_.getWidth()/2 : rect_.getMinX();
+    	int x = xCentered ? other.getRect().x + other.getRect().width/2 - rect_.width/2 : rect_.x;
     		
-    	rect_ = new Rectangle2D(x, other.getRect().getMinY() - rect_.getHeight() + stickOverlap, 
-								rect_.getWidth(), rect_.getHeight());
+    	rect_ = new Rectangle(x, other.getRect().y - rect_.height + stickOverlap, 
+								rect_.width, rect_.height);
     	
     	parent_ = other;
 
-    	relx_ = Math.clamp(rect_.getMinX() - other.getRect().getMinX(), -rect_.getWidth()/2, other.getRect().getWidth() - rect_.getWidth()/2);    	
-    	rely_ = -rect_.getHeight() + stickOverlap;
+    	relx_ = Math.clamp(rect_.x - other.getRect().x, -rect_.width/2, other.getRect().width - rect_.width/2);    	
+    	rely_ = -rect_.height + stickOverlap;
     }
     
     public void unstick() {
@@ -82,19 +82,19 @@ public class Ball extends GameObject {
         }
     }  
     
-    public void setDx(double value) {
+    public void setDx(int value) {
     	dx_ = value;
     }
     
-    public double getDx() {
+    public int getDx() {
     	return dx_;
     }
     
-    public void setSpeed(float speed) {
+    public void setSpeed(int speed) {
     	speed_ = speed;
     }
     
-    public float getSpeed() {
+    public int getSpeed() {
     	return speed_;
     }
         
@@ -106,7 +106,7 @@ public class Ball extends GameObject {
     	steel_ = value;
     }
     
-    public float getSteel() {
+    public int getSteel() {
     	return steel_;
     }
 }

@@ -3,6 +3,7 @@ package com.okkoma.arkalanoix;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -89,13 +90,13 @@ public class Level {
         
 	    final int rows = levelData.getRows();
 	    final int cols = levelData.getCols();
-	    final double spacex = 5;
-	    final double spacey = 5;
-	    final double brickWidth = 80;
-	    final double brickHeight = 20;
-	    final double bricksWidth = cols * brickWidth + (cols-1) * spacex;
-	    final double borderx = (GameScene.screenWidth - bricksWidth) / 2;
-	    final double bordery = 50;
+	    final int spacex = 5;
+	    final int spacey = 5;
+	    final int brickWidth = 80;
+	    final int brickHeight = 20;
+	    final int bricksWidth = cols * brickWidth + (cols-1) * spacex;
+	    final int borderx = (GameScene.screenWidth - bricksWidth) / 2;
+	    final int bordery = 50;
 	    
 	    bricks_ = new Brick[rows * cols];
 
@@ -154,7 +155,7 @@ public class Level {
 							score.increase(100);
 							numDestroyedBricks++;
 							if (brick.getType() == 3 || brick.getType() == 4) {
-								gameScene_.addBonus(brick.getX(), brick.getY(), random.nextInt(0, Bonus.BonusType.Max));
+								gameScene_.addBonus(brick.getRect().x, brick.getRect().y, random.nextInt(0, Bonus.BonusType.Max));
 							}
 			            }
 					}

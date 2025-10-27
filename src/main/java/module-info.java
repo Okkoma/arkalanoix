@@ -1,6 +1,7 @@
 
 module com.okkoma.arkalanoix {
 
+    requires transitive java.desktop;
     requires transitive javafx.controls;
     requires transitive javafx.fxml;
     requires transitive javafx.graphics;

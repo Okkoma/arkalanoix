@@ -119,7 +119,7 @@ public class GameScene extends Pane {
         }.start();
     }
     
-    public void addBonus(double x, double y, int type) {
+    public void addBonus(int x, int y, int type) {
     	
         addBonus(new Bonus(x, y, 20, 20, type));   	
     }
@@ -128,10 +128,10 @@ public class GameScene extends Pane {
     	
     	switch (type) {
     	case 0: // Reduit la raquette
-    		paddle_.setWidth(paddle_.getWidth() / 1.5);    		
+    		paddle_.setWidth(paddle_.getRect().width / 3 * 2);    		
     		break;
     	case 1: // Agrandit la raquette
-    		paddle_.setWidth(paddle_.getWidth() * 1.5);
+    		paddle_.setWidth(paddle_.getRect().width * 3 / 2);
     		break;
     	case 2: // Ajoute une vie
     		life_.add();
@@ -145,25 +145,25 @@ public class GameScene extends Pane {
     			ball.unstick();
     		break;
     	case 5: // réduit la vitesse de la raquette
-    		paddle_.setSpeed(paddle_.getSpeed() / 1.5f);
+    		paddle_.setSpeed(paddle_.getSpeed() * 2 / 3);
     		break;
     	case 6: // augmente la vitesse de la raquette
-    		paddle_.setSpeed(paddle_.getSpeed() * 1.5f);
+    		paddle_.setSpeed(paddle_.getSpeed() * 3 / 2);
     		break;
     	case 7: // réduit la vitesse de la balle
     		for (Ball ball : balls_)
-    			ball.setSpeed(ball.getSpeed() / 1.5f);
+    			ball.setSpeed(ball.getSpeed() * 2 / 3);
     		break;
     	case 8: // augmente la vitesse de la balle
     		for (Ball ball : balls_)
-    			ball.setSpeed(ball.getSpeed() * 1.5f);
+    			ball.setSpeed(ball.getSpeed() * 3 / 2);
     		break;
     	case 9: // Balle d'acier
     		for (Ball ball : balls_)
     			ball.setSteel(10);
     		break;
     	case 10: // Multi-balle
-    		balls_.add(new Ball(balls_.getFirst().getX(), balls_.getFirst().getY(), 10., Color.WHITE));
+    		balls_.add(new Ball(balls_.getFirst().getRect().x, balls_.getFirst().getRect().y, 10, Color.WHITE));
     		balls_.getLast().setDx(-balls_.getFirst().getDx());
     		break;    		
     	}
@@ -291,7 +291,7 @@ public class GameScene extends Pane {
     	
         System.out.println("New ball.");
         balls_.clear();
-        balls_.add(new Ball(0., 0., 10., Color.WHITE));
+        balls_.add(new Ball(0, 0, 10, Color.WHITE));
         balls_.getFirst().stickOn(paddle_, true);
         isPlaying_ = true;
         
@@ -311,7 +311,7 @@ public class GameScene extends Pane {
         life_ = new Life(3);
         score_ = new Score(0);
         level_.reset();
-        paddle_ = new Paddle(350., 550., 100., 10., Color.ALICEBLUE);
+        paddle_ = new Paddle(350, 550, 100, 10, Color.ALICEBLUE);
         activeBonuses_.clear();
         
     	if (ui_.gameMenu_ != null)
