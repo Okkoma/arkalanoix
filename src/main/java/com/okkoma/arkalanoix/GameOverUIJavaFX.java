@@ -5,14 +5,14 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 
-public class GameOverUI extends UIPanel {
+public class GameOverUIJavaFX extends UIPanelJavaFX {
 	
     private VBox menuBox;
     private Text gameOverText;
     private Button replayButton;
     private Button quitButton;
     
-    public GameOverUI(GameSceneJavaFX gameScene) {
+    public GameOverUIJavaFX(GameSceneJavaFX gameScene) {
 		super("GameOverUI", gameScene);
 	}
 

@@ -4,7 +4,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
 
-public abstract class UIPanel extends StackPane implements IUIPanel {
+public abstract class UIPanelJavaFX extends StackPane implements IUIPanel {
 
     private String name_;
     private int state_ = 0;
@@ -12,7 +12,7 @@ public abstract class UIPanel extends StackPane implements IUIPanel {
     @SuppressWarnings("unused")
 	protected GameSceneJavaFX gameScene_;
 
-    public UIPanel(String name, GameSceneJavaFX gameScene) {
+    public UIPanelJavaFX(String name, GameSceneJavaFX gameScene) {
     	
         gameScene_ = gameScene;
         name_ = name;

@@ -5,28 +5,29 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 
-public class GameQuitUI extends UIPanel {
+public class GameMenuUIJavaFX extends UIPanelJavaFX {
 	
     private VBox menuBox;
     private Text gameOverText;
     private Button continueButton;
     private Button quitButton;
     
-    public GameQuitUI(GameSceneJavaFX gameScene) {
-		super("GameQuitUI", gameScene);
+    public GameMenuUIJavaFX(GameSceneJavaFX gameScene) {
+		super("GameMenuUI", gameScene);
 	}
 
     @Override
     public void set() {
 
-        gameOverText = new Text("QUIT");
+        gameOverText = new Text("MENU");
         gameOverText.setFill(javafx.scene.paint.Color.WHITE);
         gameOverText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold;");
 
-        continueButton = new Button("Continuer");
+        continueButton = new Button("Commencer");
         continueButton.setStyle("-fx-font-size: 20px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
         continueButton.setOnAction(e -> {
             hide();
+            gameScene_.restartGame();
         });
 
         quitButton = new Button("Quitter");
@@ -42,6 +43,26 @@ public class GameQuitUI extends UIPanel {
         // Ajout au StackPane
         this.getChildren().add(menuBox);
 
-        System.out.println("GameQuitUI set");
+        System.out.println("GameMenuUI set");
+    }
+    
+    @Override
+    public void setState(int state) {
+    	
+    	System.out.println("GameMenuUI setState " + state);
+    	super.setState(state);
+        continueButton.setText(state == 0 ? "Commencer" : "Continuer");
+
+        if (state == 0)
+        {
+        	continueButton.setOnAction(e -> {        
+        		hide();
+        		gameScene_.restartGame();
+        	});
+        } else {
+        	continueButton.setOnAction(e -> {   
+        		gameScene_.togglePause();
+        	});
+        }
     }
 }

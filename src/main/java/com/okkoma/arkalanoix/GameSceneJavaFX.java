@@ -19,7 +19,7 @@ public class GameSceneJavaFX extends Pane {
         this.getChildren().add(canvas_);
 
         gameScene_.renderer_ = new RendererJavaFX(canvas_.getGraphicsContext2D());
-        gameScene_.ui_ = new GameUI(this, (StackPane)root);
+        gameScene_.ui_ = new GameUIJavaFX(this, (StackPane)root);
 
         setFocusTraversable(true);
 

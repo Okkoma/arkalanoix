@@ -3,15 +3,15 @@ package com.okkoma.arkalanoix;
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;
 
-public class GameUI extends StackPane implements IGameUI {
+public class GameUIJavaFX extends StackPane implements IGameUI {
 
-    private UIPanel gameOver_, gameWin_, gameMenu_;
+    private UIPanelJavaFX gameOver_, gameWin_, gameMenu_;
     
-    public GameUI(GameSceneJavaFX gameScene, StackPane root) {
+    public GameUIJavaFX(GameSceneJavaFX gameScene, StackPane root) {
     	
-        gameOver_ = new GameOverUI(gameScene);
-        gameWin_ = new GameWinUI(gameScene);      
-        gameMenu_ = new GameMenuUI(gameScene);
+        gameOver_ = new GameOverUIJavaFX(gameScene);
+        gameWin_ = new GameWinUIJavaFX(gameScene);      
+        gameMenu_ = new GameMenuUIJavaFX(gameScene);
                
         // Ajouter les éléments au StackPane (l'ordre d'ajout est important)
         root.getChildren().addAll(gameScene, gameOver_, gameWin_, gameMenu_);        

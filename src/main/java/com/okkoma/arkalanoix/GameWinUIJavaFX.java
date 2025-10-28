@@ -5,13 +5,13 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 
-public class GameWinUI extends UIPanel {
+public class GameWinUIJavaFX extends UIPanelJavaFX {
 	
 	private VBox menuBox;
     private Text text;
     private Button replayButton;
 
-    public GameWinUI(GameSceneJavaFX gameScene) {
+    public GameWinUIJavaFX(GameSceneJavaFX gameScene) {
 		super("GameWinUI", gameScene);
 	}
 
