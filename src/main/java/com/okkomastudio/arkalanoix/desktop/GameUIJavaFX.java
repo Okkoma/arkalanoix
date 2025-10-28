@@ -1,4 +1,8 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.desktop;
+
+import com.okkomastudio.arkalanoix.core.IGameUI;
+import com.okkomastudio.arkalanoix.core.IUIPanel;
+import com.okkomastudio.arkalanoix.core.GameScene;
 
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;

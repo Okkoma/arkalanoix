@@ -1,4 +1,4 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.core;
 
 public class LevelData {
     private int id;

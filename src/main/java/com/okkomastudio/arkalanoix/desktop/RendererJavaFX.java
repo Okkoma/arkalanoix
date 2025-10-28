@@ -1,4 +1,6 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.desktop;
+
+import com.okkomastudio.arkalanoix.core.IRenderer;
 
 import java.awt.Color;
 

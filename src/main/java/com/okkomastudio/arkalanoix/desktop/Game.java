@@ -1,4 +1,6 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.desktop;
+
+import com.okkomastudio.arkalanoix.core.GameContext;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;

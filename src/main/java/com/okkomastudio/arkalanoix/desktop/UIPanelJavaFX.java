@@ -1,4 +1,7 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.desktop;
+
+import com.okkomastudio.arkalanoix.core.IUIPanel;
+import com.okkomastudio.arkalanoix.core.GameContext;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;

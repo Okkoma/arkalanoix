@@ -1,4 +1,4 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.core;
 
 import java.awt.Rectangle;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.InputStream;

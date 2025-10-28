@@ -1,4 +1,4 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.core;
 
 public class GameContext {
     public final static int screenWidth_ = 800;

@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.okkoma.arkalanoix</groupId>
+    <groupId>com.okkomastudio.arkalanoix.desktop</groupId>
     <artifactId>arkalanoix</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -71,7 +71,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.okkoma.arkalanoix.Game</mainClass>
+                            <mainClass>com.okkomastudio.arkalanoix.desktop.Game</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -83,7 +83,7 @@
 	            <artifactId>maven-jlink-plugin</artifactId>
 	            <version>3.1.0</version>
 	            <configuration>
-	                <launcher>arkalanoix=com.okkoma.arkalanoix.Game</launcher>
+	                <launcher>arkalanoix=com.okkomastudio.arkalanoix.desktop.Game</launcher>
 	                <addModules>
 	                    javafx.controls,
 	                    javafx.fxml,
@@ -109,7 +109,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.okkoma.arkalanoix.Game</mainClass>
+                    <mainClass>com.okkomastudio.arkalanoix.desktop.Game</mainClass>
                 </configuration>
 			</plugin>            
         </plugins>

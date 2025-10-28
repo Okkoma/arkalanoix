@@ -1,4 +1,4 @@
-package com.okkoma.arkalanoix;
+package com.okkomastudio.arkalanoix.desktop;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
