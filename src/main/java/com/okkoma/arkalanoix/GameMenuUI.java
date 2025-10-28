@@ -1,7 +1,6 @@
 package com.okkoma.arkalanoix;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
@@ -13,7 +12,7 @@ public class GameMenuUI extends UIPanel {
     private Button continueButton;
     private Button quitButton;
     
-    public GameMenuUI(GameScene gameScene) {
+    public GameMenuUI(GameSceneJavaFX gameScene) {
 		super("GameMenuUI", gameScene);
 	}
 
@@ -21,7 +20,7 @@ public class GameMenuUI extends UIPanel {
     public void set() {
 
         gameOverText = new Text("MENU");
-        gameOverText.setFill(Color.WHITE);
+        gameOverText.setFill(javafx.scene.paint.Color.WHITE);
         gameOverText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold;");
 
         continueButton = new Button("Commencer");
@@ -43,7 +42,7 @@ public class GameMenuUI extends UIPanel {
         
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-        
+
         System.out.println("GameMenuUI set");
     }
     

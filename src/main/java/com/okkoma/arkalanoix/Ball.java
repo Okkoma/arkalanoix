@@ -1,9 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Color;
 import java.awt.Rectangle;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public class Ball extends GameObject {
 
@@ -28,11 +26,11 @@ public class Ball extends GameObject {
 	    	rect_ = new Rectangle(rect_.x + dx_ * speed_, rect_.y + dy_ * speed_, 
 	    							rect_.width, rect_.height);
 	        // bounce on border 
-	    	if (rect_.getMinX() <= 0 || rect_.getMinX() + rect_.getWidth() >= GameScene.screenWidth)
+	    	if (rect_.getMinX() <= 0 || rect_.getMinX() + rect_.getWidth() >= GameContext.getScreenWidth())
 	        	dx_ *= -1;
 	        if (rect_.getMinY() <= 0)
 	        	dy_ *= -1;
-	        else if (rect_.getMinY() >= GameScene.screenHeight)
+	        else if (rect_.getMinY() >= GameContext.getScreenHeight())
 	        	isDestroyed_ = true;
     	} else {
 	    	rect_ = new Rectangle(parent_.getRect().x + relx_, parent_.getRect().y + rely_, 
@@ -75,10 +73,10 @@ public class Ball extends GameObject {
     }
     
     @Override
-    public void draw(GraphicsContext gc) {
+    public void draw(IRenderer renderer) {
         if (!isDestroyed_) {
-            gc.setFill(steel_ > 0 ? Color.DARKGRAY : color_);
-            gc.fillOval(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
+            renderer.setFill(steel_ > 0 ? Color.DARK_GRAY : color_);
+            renderer.fillOval(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
         }
     }  
     

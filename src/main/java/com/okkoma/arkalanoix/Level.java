@@ -1,13 +1,9 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 public class Level {
 	
@@ -49,7 +45,7 @@ public class Level {
 		set(levelId_+1);
 	}
 
-	private LevelData generateRandomLevel( int cols, int rows) {
+	private LevelData generateRandomLevel(int cols, int rows) {
 		
 		Random random = new Random();
 		
@@ -95,7 +91,7 @@ public class Level {
 	    final int brickWidth = 80;
 	    final int brickHeight = 20;
 	    final int bricksWidth = cols * brickWidth + (cols-1) * spacex;
-	    final int borderx = (GameScene.screenWidth - bricksWidth) / 2;
+	    final int borderx = (GameContext.getScreenWidth() - bricksWidth) / 2;
 	    final int bordery = 50;
 	    
 	    bricks_ = new Brick[rows * cols];
@@ -120,10 +116,10 @@ public class Level {
 		
 	private Color getBrickColor(int row, int col, int type) {
 		if (type == 1 || type == 3) 
-			return Color.rgb((row * 25) % 256, (90 + col * 20) % 256, 200);
+			return new Color((row * 25) % 256, (90 + col * 20) % 256, 200);
 		else if (type == 2) {
 			int gradGray = Math.clamp(100 + row * col, 0, 255);
-			return Color.rgb(gradGray, gradGray, gradGray);
+			return new Color(gradGray, gradGray, gradGray);
 		} else 
 			return Color.GRAY;
 	}
@@ -166,17 +162,15 @@ public class Level {
 		return bricks_.length == numDestroyedBricks;
 	}
 
-	public void draw(GraphicsContext gc) {
+	public void draw(IRenderer renderer) {
 		
 		for (Brick brick : bricks_) {
 			if (brick != null && !brick.isDestroyed()) {
-				brick.draw(gc);
+				brick.draw(renderer);
 			}
 		}
 		
-    	gc.setTextAlign(TextAlignment.LEFT);
-    	gc.setFont(Font.font("Arial", 18));
-    	gc.setFill(Color.WHITE);
-    	gc.fillText(Integer.toString(levelId_), 4, 22);
+    	renderer.setFill(Color.WHITE);
+    	renderer.fillText(Integer.toString(levelId_), 4, 22, "Arial", 18, 0, 1);
 	} 
 }

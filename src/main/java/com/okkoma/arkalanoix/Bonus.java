@@ -1,12 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Color;
 import java.awt.Rectangle;
-
-import javafx.geometry.VPos;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 public class Bonus extends GameObject {
 	
@@ -20,9 +15,9 @@ public class Bonus extends GameObject {
 				"balle d'acier", "multi-balle"
 		};
 		final static Color Colors[] = {
-				Color.DARKBLUE, Color.CYAN, Color.GOLD, Color.LIGHTGREEN,
-				Color.DARKGREEN, Color.MEDIUMORCHID, Color.MAGENTA, Color.BLUE,
-				Color.YELLOW, Color.CRIMSON, Color.DEEPPINK
+				Color.BLUE, Color.CYAN, Color.YELLOW, Color.GREEN,
+				Color.ORANGE, Color.PINK, Color.MAGENTA, Color.BLUE,
+				Color.YELLOW, Color.RED, Color.LIGHT_GRAY
 		};
 	};
 	
@@ -35,16 +30,13 @@ public class Bonus extends GameObject {
     }
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void draw(IRenderer renderer) {
         if (!isDestroyed_) {
-        	final int fontSize = 16;
-            gc.setFill(color_);
-            gc.fillOval(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
-        	gc.setTextAlign(TextAlignment.CENTER);
-        	gc.setTextBaseline(VPos.CENTER);
-        	gc.setFont(Font.font(fontSize));
-        	gc.setFill(Color.WHITE);
-        	gc.fillText(Integer.toString(type_), rect_.getMinX() + rect_.getWidth() / 2, rect_.getMinY() + rect_.getHeight() / 2);            
+            renderer.setFill(color_);
+            renderer.fillOval(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
+        	renderer.setFill(Color.WHITE);
+        	renderer.fillText(Integer.toString(type_), rect_.getMinX() + rect_.getWidth() / 2, rect_.getMinY() + rect_.getHeight() / 2, 
+                    "Arial", 16, 1, 1);            
         }
     }
 

@@ -1,7 +1,6 @@
 package com.okkoma.arkalanoix;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
@@ -12,15 +11,15 @@ public class GameWinUI extends UIPanel {
     private Text text;
     private Button replayButton;
 
-    public GameWinUI(GameScene gameScene) {
+    public GameWinUI(GameSceneJavaFX gameScene) {
 		super("GameWinUI", gameScene);
 	}
 
     @Override
     public void set() {
-    	
+
         text = new Text("NEXT LEVEL");
-        text.setFill(Color.WHITE);
+        text.setFill(javafx.scene.paint.Color.WHITE);
         text.setStyle("-fx-font-size: 48px; -fx-font-weight: bold;");
 
         replayButton = new Button("Continuer");
@@ -37,7 +36,7 @@ public class GameWinUI extends UIPanel {
 
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-        
+
         System.out.println("GameWinUI set");
     }
 }

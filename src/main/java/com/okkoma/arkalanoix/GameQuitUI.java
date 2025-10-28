@@ -1,7 +1,6 @@
 package com.okkoma.arkalanoix;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
@@ -13,7 +12,7 @@ public class GameQuitUI extends UIPanel {
     private Button continueButton;
     private Button quitButton;
     
-    public GameQuitUI(GameScene gameScene) {
+    public GameQuitUI(GameSceneJavaFX gameScene) {
 		super("GameQuitUI", gameScene);
 	}
 
@@ -21,7 +20,7 @@ public class GameQuitUI extends UIPanel {
     public void set() {
 
         gameOverText = new Text("QUIT");
-        gameOverText.setFill(Color.WHITE);
+        gameOverText.setFill(javafx.scene.paint.Color.WHITE);
         gameOverText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold;");
 
         continueButton = new Button("Continuer");
@@ -42,7 +41,7 @@ public class GameQuitUI extends UIPanel {
         
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-        
+
         System.out.println("GameQuitUI set");
     }
 }

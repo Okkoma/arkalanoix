@@ -1,9 +1,6 @@
 package com.okkoma.arkalanoix;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
+import java.awt.Color;
 
 public class Life {
 	
@@ -21,11 +18,9 @@ public class Life {
 		life_--;
 	}
 	
-    public void draw(GraphicsContext gc) {
-    	gc.setTextAlign(TextAlignment.CENTER);
-    	gc.setFont(Font.font("Arial", 18));
-    	gc.setFill(Color.WHITE);
-    	gc.fillText(Integer.toString(life_), GameScene.screenWidth / 2, GameScene.screenHeight - 18);
+    public void draw(IRenderer renderer) {
+    	renderer.setFill(Color.WHITE);
+    	renderer.fillText(Integer.toString(life_), GameContext.getScreenWidth() / 2, GameContext.getScreenHeight() - 18, "Arial", 18, 1, 1);
     }
     
     public int get() {

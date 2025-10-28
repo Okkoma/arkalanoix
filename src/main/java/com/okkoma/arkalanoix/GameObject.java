@@ -1,9 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Color;
 import java.awt.Rectangle;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public abstract class GameObject {
 	protected Rectangle rect_;
@@ -22,7 +20,7 @@ public abstract class GameObject {
         this.color_ = color;
     }
     
-    public abstract void draw(GraphicsContext gc);
+    public abstract void draw(IRenderer renderer);
     
     public void destroy() {
         isDestroyed_ = true;

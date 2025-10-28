@@ -1,9 +1,6 @@
 package com.okkoma.arkalanoix;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.text.Font;
+import java.awt.Color;
 
 public class Score {
 	
@@ -13,11 +10,9 @@ public class Score {
 		score_ = score;
 	}
 	
-    public void draw(GraphicsContext gc) {
-    	gc.setTextAlign(TextAlignment.CENTER);
-    	gc.setFont(Font.font("Arial", 24)); // Augmentez la taille ici
-    	gc.setFill(Color.WHITE);
-    	gc.fillText(Integer.toString(score_),  GameScene.screenWidth / 2, 28);
+    public void draw(IRenderer renderer) {
+		renderer.setFill(Color.WHITE);
+    	renderer.fillText(Integer.toString(score_), GameContext.getScreenWidth() / 2, 28, "Arial", 24, 1, 1);
     }
     
     public void increase(int amount) {

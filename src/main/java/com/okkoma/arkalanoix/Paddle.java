@@ -1,14 +1,12 @@
 package com.okkoma.arkalanoix;
 
 import java.awt.Rectangle;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 
 public class Paddle extends GameObject {
 
 	private int defaultWidth_;
-	private int defaultSpeed_ = 10;
+	private final int defaultSpeed_ = 10;
     private int speed_;
     
     private boolean isSticky_;
@@ -22,17 +20,17 @@ public class Paddle extends GameObject {
     
     public void move(int inc) {
     	
-        int x = Math.clamp(rect_.x + inc * speed_, 0, GameScene.screenWidth - rect_.width);
+        int x = Math.clamp(rect_.x + inc * speed_, 0, GameContext.getScreenWidth() - rect_.width);
         if (x != rect_.x) 
         	rect_ = new Rectangle(x, rect_.y, rect_.width, rect_.height);
     }
     
     @Override
-    public void draw(GraphicsContext gc) {
+    public void draw(IRenderer renderer) {
     	
         if (!isDestroyed_) {
-            gc.setFill(color_);
-            gc.fillRoundRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight(), 20.0, 5.0);
+            renderer.setFill(color_);
+            renderer.fillRoundRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight(), 20.0, 5.0);
         }
     }
     

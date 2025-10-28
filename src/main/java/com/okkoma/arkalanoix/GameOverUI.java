@@ -1,7 +1,6 @@
 package com.okkoma.arkalanoix;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
@@ -13,7 +12,7 @@ public class GameOverUI extends UIPanel {
     private Button replayButton;
     private Button quitButton;
     
-    public GameOverUI(GameScene gameScene) {
+    public GameOverUI(GameSceneJavaFX gameScene) {
 		super("GameOverUI", gameScene);
 	}
 
@@ -21,7 +20,7 @@ public class GameOverUI extends UIPanel {
     public void set() {
 
         gameOverText = new Text("GAME OVER");
-        gameOverText.setFill(Color.WHITE);
+        gameOverText.setFill(javafx.scene.paint.Color.WHITE);
         gameOverText.setStyle("-fx-font-size: 48px; -fx-font-weight: bold;");
 
         replayButton = new Button("Rejouer");
@@ -44,7 +43,7 @@ public class GameOverUI extends UIPanel {
         
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-        
+
         System.out.println("GameOverUI set");
     }
 }

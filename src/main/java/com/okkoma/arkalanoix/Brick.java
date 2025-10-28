@@ -1,9 +1,7 @@
 package com.okkoma.arkalanoix;
 
+import java.awt.Color;
 import java.awt.Rectangle;
-
-import javafx.scene.paint.Color;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Brick extends GameObject {
     
@@ -19,12 +17,12 @@ public class Brick extends GameObject {
     }
     
     @Override
-    public void draw(GraphicsContext gc) {
+    public void draw(IRenderer renderer) {
         if (!isDestroyed_) {
-            gc.setFill(color_);
-            gc.fillRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
-            gc.setStroke(Color.BLACK);
-            gc.strokeRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
+            renderer.setFill(color_);
+            renderer.fillRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
+            renderer.setStroke(Color.BLACK);
+            renderer.strokeRect(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
         }
     }
     
