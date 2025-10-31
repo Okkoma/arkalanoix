@@ -1,19 +1,19 @@
 package com.okkomastudio.arkalanoix.core;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 
 public class Brick extends GameObject {
     
-	private int type_;
-	private int resistance_;
+	private final int type_;
+	private final int resistance_;
 	private int hitPoints_;
 	
     public Brick(int x, int y, int width, int height, Color color, int type) {
         super(x, y, width, height, color);
         type_ = type;
         resistance_ = type == 2 ? 2 : 1;
-        reset(); 
+        hitPoints_ = resistance_;
+        isDestroyed_ = false;
     }
     
     @Override

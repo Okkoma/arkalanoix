@@ -2,16 +2,12 @@ package com.okkomastudio.arkalanoix.desktop;
 
 import com.okkomastudio.arkalanoix.core.*;
 
-import java.util.ArrayList;
-import java.awt.Color;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
-import javafx.animation.AnimationTimer;
 import javafx.scene.layout.StackPane;
 
 public class GameSceneJavaFX extends Pane {
-    private Canvas canvas_;
+    private final Canvas canvas_;
     private GameScene gameScene_;
 
     public GameSceneJavaFX(StackPane root) {

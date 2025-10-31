@@ -2,14 +2,13 @@ package com.okkomastudio.arkalanoix.desktop;
 
 import com.okkomastudio.arkalanoix.core.IGameUI;
 import com.okkomastudio.arkalanoix.core.IUIPanel;
-import com.okkomastudio.arkalanoix.core.GameScene;
 
 import javafx.scene.layout.StackPane;
 import javafx.geometry.Pos;
 
 public class GameUIJavaFX extends StackPane implements IGameUI {
 
-    private UIPanelJavaFX gameOver_, gameWin_, gameMenu_;
+    private final UIPanelJavaFX gameOver_, gameWin_, gameMenu_;
     
     public GameUIJavaFX(GameSceneJavaFX gameScene, StackPane root) {
     	

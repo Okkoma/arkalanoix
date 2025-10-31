@@ -9,10 +9,9 @@ import javafx.geometry.Pos;
 
 public abstract class UIPanelJavaFX extends StackPane implements IUIPanel {
 
-    private String name_;
+    private final String name_;
     private int state_ = 0;
     
-    @SuppressWarnings("unused")
 	protected GameSceneJavaFX gameScene_;
 
     public UIPanelJavaFX(String name, GameSceneJavaFX gameScene) {
