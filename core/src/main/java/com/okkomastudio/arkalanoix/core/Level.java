@@ -7,7 +7,12 @@ import java.util.Map;
 import java.util.Random;
 
 public class Level {
-	
+
+	final int MaxCols = 9;
+	final int MaxRows = 10;
+	final int SpaceX = 5;
+	final int SpaceY = 5;
+
 	int levelId_;
 	Brick[] bricks_;
 	GameScene gameScene_;
@@ -29,12 +34,12 @@ public class Level {
 
 	public void set(int level) {
 		levelId_ = level;
-		
-		createBricks();
 	}
 	
 	public void reset() {
-		
+
+		createBricks();
+
         for (Brick brick : bricks_) {
             if (brick != null) {
                 brick.reset();
@@ -87,14 +92,14 @@ public class Level {
         
 	    final int rows = levelData.getRows();
 	    final int cols = levelData.getCols();
-	    final int spacex = 5;
-	    final int spacey = 5;
-	    final int brickWidth = 80;
-	    final int brickHeight = 20;
-	    final int bricksWidth = cols * brickWidth + (cols-1) * spacex;
+		final int rowWidth = getRowWidth();
+		final int rowHeight = getRowHeight();
+	    final int bricksWidth = cols * rowWidth + (cols-1) * SpaceX;
 	    final int borderx = (GameContext.getScreenWidth() - bricksWidth) / 2;
-	    final int bordery = 50;
+	    final int bordery = getTopBorder();
 	    
+		System.out.printf("Level create bricks w:%s \n", GameContext.getScreenWidth());
+
 	    bricks_ = new Brick[rows * cols];
 
 	    for (int i = 0; i < rows; i++) {
@@ -103,18 +108,28 @@ public class Level {
 	            if (brickType > 0) {
 	                Color color = getBrickColor(i, j, brickType);
 	                bricks_[i * cols + j] = new Brick(
-	                    j * (brickWidth + spacex) + borderx,
-	                    i * (brickHeight + spacey) + bordery,
-	                    brickWidth,
-	                    brickHeight,
-	                    color,
-	                    brickType
+	                    j * (rowWidth + SpaceX) + borderx, i * (rowHeight + SpaceY) + bordery,
+							rowWidth, rowHeight, color, brickType
 	                );
 	            }
 	        }
 	    }
 	}
-		
+
+	public int getRowWidth() {
+		return GameContext.getScreenWidth() / MaxCols;
+	}
+	public int getRowHeight() {
+		return getRowWidth() / 4;
+	}
+	public int getTopBorder() {
+		final int bricksHeight = MaxRows * getRowHeight() + (MaxRows-1) * SpaceY;
+		return (GameContext.getScreenHeight() - bricksHeight) / 3;
+	}
+	public int getBottomBorder() {
+		final int bricksHeight = MaxRows * getRowHeight() + (MaxRows-1) * SpaceY;
+		return getTopBorder() + bricksHeight;
+	}
 	private Color getBrickColor(int row, int col, int type) {
 		if (type == 1 || type == 3) 
 			return new Color((row * 25) % 256, (90 + col * 20) % 256, 200);
