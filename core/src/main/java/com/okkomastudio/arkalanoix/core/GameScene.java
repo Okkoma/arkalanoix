@@ -89,26 +89,28 @@ public class GameScene {
         
         for (Ball ball : balls_) {
             
-        	if (spacePressed_ && ball.isStickOn(paddle_))
+        	if (spacePressed_ && ball.isStickOn(paddle_)) {
                 ball.unstick();
-            
+            }
+
         	ball.move();
     
-	        if (!ball.isStickOn(paddle_) && ball.intersects(paddle_))
-	        {
+	        if (!ball.isStickOn(paddle_) && ball.intersects(paddle_)) {
 	        	ball.bounce(1);
-	        	if (paddle_.isSticky())
-	        		ball.stickOn(paddle_, false);
-	        	else
-	        		ball.putOver(paddle_);        	
+	        	if (paddle_.isSticky()) {
+                    ball.stickOn(paddle_, false);
+                } else {
+                    ball.putOver(paddle_);
+                }
 	        }
         }
         
         // Faire tomber les bonus
         for (Bonus bonus : activeBonuses_) {
-        	if (bonus.isDestroyed())
-        		continue;
-        	
+        	if (bonus.isDestroyed()) {
+                continue;
+            }
+
             bonus.fall();
 
             // Vérifier si le bonus est récupéré par la raquette
@@ -204,28 +206,39 @@ public class GameScene {
     }
     
     public void start() {
-    	
+
+        level_.reset();
+
+        if (paddle_ == null) {
+            final int paddleWidth = GameContext.getScreenWidth() / 8;
+            final int paddleHeight = paddleWidth / 10;
+            paddle_ = new Paddle(GameContext.getScreenWidth() / 2, Math.min(3 * level_.getBottomBorder() / 2, GameContext.getScreenHeight() - 50),
+                    paddleWidth, paddleHeight , Color.WHITE);
+            System.out.println("New paddle.");
+        }
+
         System.out.println("New ball.");
         balls_.clear();
         balls_.add(new Ball(0, 0, 10, Color.WHITE));
         balls_.get(0).stickOn(paddle_, true);
+
         isPlaying_ = true;     
     }
     
     public void nextLevel() {
     	
     	System.out.println("Level Finished!");
+        
     	level_.next();
-    	
+
         start();
     }
     
     public void restartGame() {
+
         // Réinitialiser le jeu
         life_ = new Life(3);
         score_ = new Score(0);
-        level_.reset();
-        paddle_ = new Paddle(350, 550, 100, 10, Color.WHITE);
         activeBonuses_.clear();
         
     	if (ui_.getGameMenuPanel() != null)
