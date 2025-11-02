@@ -1,7 +1,5 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
-
 public class Brick extends GameObject {
     
 	private final int type_;

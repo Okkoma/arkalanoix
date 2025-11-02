@@ -1,7 +1,6 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
-import java.awt.Rectangle;
+import java.lang.Math;
 
 public class Ball extends GameObject {
 
@@ -53,7 +52,7 @@ public class Ball extends GameObject {
     	
     	parent_ = other;
 
-    	relx_ = Math.clamp(rect_.x - other.getRect().x, -rect_.width/2, other.getRect().width - rect_.width/2);    	
+    	relx_ = Math.min(Math.max(rect_.x - other.getRect().x, -rect_.width/2), other.getRect().width - rect_.width/2);    	
     	rely_ = -rect_.height + stickOverlap;
     }
     

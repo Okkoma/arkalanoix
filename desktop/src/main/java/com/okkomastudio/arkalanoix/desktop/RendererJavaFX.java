@@ -1,8 +1,7 @@
 package com.okkomastudio.arkalanoix.desktop;
 
+import com.okkomastudio.arkalanoix.core.Color;
 import com.okkomastudio.arkalanoix.core.IRenderer;
-
-import java.awt.Color;
 
 import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;

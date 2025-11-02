@@ -1,12 +1,9 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
-import java.awt.Rectangle;
-
 public abstract class GameObject {
-	protected Rectangle rect_;
-	protected Color color_;
-	protected boolean isDestroyed_;
+    protected Rectangle rect_;
+    protected Color color_;
+    protected boolean isDestroyed_;
     
 	public GameObject() {
 		

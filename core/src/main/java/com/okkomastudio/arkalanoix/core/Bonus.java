@@ -1,8 +1,5 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
-import java.awt.Rectangle;
-
 public class Bonus extends GameObject {
 	
 	public static class BonusType {

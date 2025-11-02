@@ -1,6 +1,7 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
+import java.lang.Math;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -118,7 +119,7 @@ public class Level {
 		if (type == 1 || type == 3) 
 			return new Color((row * 25) % 256, (90 + col * 20) % 256, 200);
 		else if (type == 2) {
-			int gradGray = Math.clamp(100 + row * col, 0, 255);
+			int gradGray = Math.min(Math.max(100 + row * col, 0), 255);
 			return new Color(gradGray, gradGray, gradGray);
 		} else 
 			return Color.GRAY;

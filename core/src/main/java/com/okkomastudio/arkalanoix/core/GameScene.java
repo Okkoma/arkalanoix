@@ -2,8 +2,6 @@ package com.okkomastudio.arkalanoix.core;
 
 import java.util.ArrayList;
 
-import java.awt.Color;
-
 public class GameScene {
 
 	public IGameUI ui_;
@@ -72,8 +70,8 @@ public class GameScene {
     			ball.setSteel(10);
     		break;
     	case 10: // Multi-balle
-    		balls_.add(new Ball(balls_.getFirst().getRect().x, balls_.getFirst().getRect().y, 10, Color.WHITE));
-    		balls_.getLast().setDx(-balls_.getFirst().getDx());
+    		balls_.add(new Ball(balls_.get(0).getRect().x, balls_.get(0).getRect().y, 10, Color.WHITE));
+    		balls_.get(balls_.size()-1).setDx(-balls_.get(0).getDx());
     		break;    		
     	}
     	
@@ -184,15 +182,25 @@ public class GameScene {
     }
     
     public void togglePause() {
-    	
-    	isPlaying_ = !isPlaying_;
-    	if (ui_.getGameMenuPanel() != null) {
-    		if (!isPlaying_) {
-    			ui_.getGameMenuPanel().show();
-    		} else {
-    			ui_.getGameMenuPanel().hide();
-    		}
-    	}
+        if (isPlaying_) {
+            pause();
+        } else {
+            resume();
+        }
+    }
+
+    public void pause() {
+        isPlaying_ = false;
+        if (ui_.getGameMenuPanel() != null) {
+            ui_.getGameMenuPanel().show();
+        }
+    }
+
+    public void resume() {
+        isPlaying_ = true;
+        if (ui_.getGameMenuPanel() != null) {
+            ui_.getGameMenuPanel().hide();
+        }
     }
     
     public void start() {
@@ -200,7 +208,7 @@ public class GameScene {
         System.out.println("New ball.");
         balls_.clear();
         balls_.add(new Ball(0, 0, 10, Color.WHITE));
-        balls_.getFirst().stickOn(paddle_, true);
+        balls_.get(0).stickOn(paddle_, true);
         isPlaying_ = true;     
     }
     

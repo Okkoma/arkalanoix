@@ -1,7 +1,5 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Color;
-
 public interface IRenderer {
     void setFill(Color color);
     void fillText(String text, double x, double y, String fontname, int fontsize, int halign, int valign);

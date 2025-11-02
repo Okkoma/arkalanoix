@@ -1,6 +1,7 @@
 package com.okkomastudio.arkalanoix.desktop;
 
-import com.okkomastudio.arkalanoix.core.*;
+import com.okkomastudio.arkalanoix.core.GameScene;
+import com.okkomastudio.arkalanoix.core.GameContext;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;

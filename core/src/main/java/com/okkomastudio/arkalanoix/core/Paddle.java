@@ -1,7 +1,6 @@
 package com.okkomastudio.arkalanoix.core;
 
-import java.awt.Rectangle;
-import java.awt.Color;
+import java.lang.Math;
 
 public class Paddle extends GameObject {
 
@@ -20,7 +19,7 @@ public class Paddle extends GameObject {
     
     public void move(int inc) {
     	
-        int x = Math.clamp(rect_.x + inc * speed_, 0, GameContext.getScreenWidth() - rect_.width);
+        int x = Math.min(Math.max(rect_.x + inc * speed_, 0), GameContext.getScreenWidth() - rect_.width);
         if (x != rect_.x) 
         	rect_ = new Rectangle(x, rect_.y, rect_.width, rect_.height);
     }
