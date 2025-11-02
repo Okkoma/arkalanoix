@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application' version '8.13.0'
+}
+
+android {
+    namespace 'com.okkomastudio.arkalanoix.android'
+    compileSdk 36
+    
+    defaultConfig {
+        applicationId 'com.okkomastudio.arkalanoix.android'
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName '1.0'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+           sourceCompatibility JavaVersion.VERSION_17
+           targetCompatibility JavaVersion.VERSION_17
+           // Enable desugaring for Android features
+           coreLibraryDesugaringEnabled true
+    }
+        
+    buildFeatures {
+        viewBinding true
+    }
+    
+    // Désactive la compilation de module-info pour Android
+    packagingOptions {
+        exclude 'META-INF/versions/9/module-info.class'
+        exclude 'module-info.class'
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+}

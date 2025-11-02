@@ -1,0 +1,11 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+ext {
+    javaVersion = JavaVersion.VERSION_17
+}
+

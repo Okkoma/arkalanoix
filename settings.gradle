@@ -1,0 +1,22 @@
+// Configure pluginManagement so modules can use the plugins {} DSL
+// and resolve the Android Gradle Plugin from Google / Maven Central.
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+		google()
+		mavenCentral()
+	}
+	plugins {
+		// Pin the Android Gradle Plugin version used by modules
+		id 'com.android.application' version '8.13.0'
+		id 'com.android.library' version '8.13.0'
+	}
+}
+
+rootProject.name = 'arkalanoix'
+
+include ':core'
+include ':android'
+
+project(':core').projectDir = file('core')
+project(':android').projectDir = file('android')

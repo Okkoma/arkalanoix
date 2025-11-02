@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    testImplementation 'junit:junit:4.13.2'
+}

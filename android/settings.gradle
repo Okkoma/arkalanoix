@@ -1,0 +1,6 @@
+rootProject.name = 'arkalanoix-android'
+
+include ':core'
+include ':android'
+
+project(':core').projectDir = file('../core')
