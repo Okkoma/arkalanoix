@@ -142,37 +142,38 @@ public class Level {
 	
 	public boolean update(Score score, ArrayList<Ball> balls) {
 		
-		int numDestroyedBricks = 0;
-		boolean intersectFound = false;
 		Random random = new Random();
 		
-		for (Brick brick : bricks_) {
+		for (Ball ball : balls) {
+
+			for (Brick brick : bricks_) {
 			
-			if (brick == null || brick.isDestroyed())
-				numDestroyedBricks++;
-			
-			else if (!intersectFound) {
+				if (brick != null && !brick.isDestroyed()) {
 				
-				for (Ball ball : balls) {
-		
 					if (brick.intersects(ball)) {
+						
 						brick.hit();
 						if (ball.getSteel() == 0)
 							ball.bounce(brick.getCollisionDirection(ball));
 
-						intersectFound = true;
-
 			            // Si la brique est de type bonus (3), créer un bonus
 						if (brick.isDestroyed()) {
 							score.increase(100);
-							numDestroyedBricks++;
 							if (brick.getType() == 3 || brick.getType() == 4) {
 								gameScene_.addBonus(brick.getRect().x, brick.getRect().y, random.nextInt(0, Bonus.BonusType.Max));
 							}
 			            }
+
+						break;
 					}
-				}
+				}				
 			}
+		}
+
+		int numDestroyedBricks = 0;
+		for (Brick brick : bricks_) {
+			if (brick == null || brick.isDestroyed())
+				numDestroyedBricks++;
 		}
 
 		return bricks_.length == numDestroyedBricks;

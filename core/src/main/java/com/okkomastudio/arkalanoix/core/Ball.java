@@ -81,7 +81,7 @@ public class Ball extends GameObject {
     }  
     
     public void setDx(int value) {
-    	dx_ = value;
+    	dx_ = value < 0 ? -1 : 1;
     }
     
     public int getDx() {
