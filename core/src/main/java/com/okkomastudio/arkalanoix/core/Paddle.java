@@ -5,14 +5,14 @@ import java.lang.Math;
 public class Paddle extends GameObject {
 
 	private int defaultWidth_;
-	private final int defaultSpeed_ = 10;
+	private int defaultSpeed_;
     private int speed_;
-    
     private boolean isSticky_;
     
     public Paddle(int x, int y, int width, int height, Color color) {
         super(x, y, width, height, color);
         defaultWidth_ = width;
+        defaultSpeed_ = GameContext.getScreenWidth() / 80;
         speed_ = defaultSpeed_;
         isSticky_ = false;
     }

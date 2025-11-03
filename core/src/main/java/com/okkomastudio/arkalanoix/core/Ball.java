@@ -4,7 +4,7 @@ import java.lang.Math;
 
 public class Ball extends GameObject {
 
-	private final int defaultSpeed_ = 3;
+	private int defaultSpeed_;
     private final int stickOverlap = 1;
     private int dx_ = 1, dy_ = -1;
     private int speed_;
@@ -15,7 +15,8 @@ public class Ball extends GameObject {
     public Ball(int x, int y, int diameter, Color color) {
     	this.rect_ = new Rectangle(x, y, diameter, diameter);
         color_ = color;
-        isDestroyed_ = false;     
+        isDestroyed_ = false;
+        defaultSpeed_ = GameContext.getScreenWidth() / 160;
         speed_ = defaultSpeed_;
         steel_ = 0;
     }

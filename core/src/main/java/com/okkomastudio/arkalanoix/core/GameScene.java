@@ -28,7 +28,7 @@ public class GameScene {
     
     public void addBonus(int x, int y, int type) {
     	
-        addBonus(new Bonus(x, y, 20, 20, type));   	
+        addBonus(new Bonus(x, y, GameContext.getScreenWidth() / 40, GameContext.getScreenWidth() / 40, type));
     }
     
     public void applyBonus(int type) {
@@ -70,7 +70,7 @@ public class GameScene {
     			ball.setSteel(10);
     		break;
     	case 10: // Multi-balle
-    		balls_.add(new Ball(balls_.get(0).getRect().x, balls_.get(0).getRect().y, 10, Color.WHITE));
+    		balls_.add(new Ball(balls_.get(0).getRect().x, balls_.get(0).getRect().y, GameContext.getScreenWidth() / 80, Color.WHITE));
     		balls_.get(balls_.size()-1).setDx(-balls_.get(0).getDx());
     		break;    		
     	}
@@ -131,7 +131,7 @@ public class GameScene {
         activeBonuses_.removeIf(Bonus::isDestroyed);
         balls_.removeIf(Ball::isDestroyed);
         
-        if (balls_.size() == 0) 
+        if (balls_.isEmpty())
         {
         	life_.remove();
         	if (life_.get() < 1)
@@ -146,19 +146,21 @@ public class GameScene {
     	renderer_.setFill(Color.BLACK);
         renderer_.fillRect(0, 0, GameContext.getScreenWidth(), GameContext.getScreenHeight());
         
-        level_.draw(renderer_);
-        
-        for (Ball ball : balls_)
-        	ball.draw(renderer_);
-        
-        paddle_.draw(renderer_);
-        
-        for (Bonus bonus : activeBonuses_) {
-        	bonus.draw(renderer_);
+        if (isPlaying_) {
+	        level_.draw(renderer_);
+	        
+	        for (Ball ball : balls_)
+	        	ball.draw(renderer_);
+	        
+	        paddle_.draw(renderer_);
+	        
+	        for (Bonus bonus : activeBonuses_) {
+	        	bonus.draw(renderer_);
+	        }
+	        
+	        score_.draw(renderer_);
+	        life_.draw(renderer_);
         }
-        
-        score_.draw(renderer_);
-        life_.draw(renderer_);
     }
 
     public void gameOver() {
@@ -207,19 +209,17 @@ public class GameScene {
     
     public void start() {
 
-        level_.reset();
-
         if (paddle_ == null) {
             final int paddleWidth = GameContext.getScreenWidth() / 8;
             final int paddleHeight = paddleWidth / 10;
             paddle_ = new Paddle(GameContext.getScreenWidth() / 2, Math.min(3 * level_.getBottomBorder() / 2, GameContext.getScreenHeight() - 50),
-                    paddleWidth, paddleHeight , Color.WHITE);
+                    paddleWidth, paddleHeight, Color.WHITE);
             System.out.println("New paddle.");
         }
 
         System.out.println("New ball.");
         balls_.clear();
-        balls_.add(new Ball(0, 0, 10, Color.WHITE));
+        balls_.add(new Ball(0, 0, GameContext.getScreenWidth() / 80, Color.WHITE));
         balls_.get(0).stickOn(paddle_, true);
 
         isPlaying_ = true;     
@@ -230,7 +230,7 @@ public class GameScene {
     	System.out.println("Level Finished!");
         
     	level_.next();
-
+        level_.reset();
         start();
     }
     
@@ -240,10 +240,12 @@ public class GameScene {
         life_ = new Life(3);
         score_ = new Score(0);
         activeBonuses_.clear();
-        
-    	if (ui_.getGameMenuPanel() != null)
-    		ui_.getGameMenuPanel().setState(1);
-    	
+
+        if (ui_.getGameMenuPanel() != null) {
+            ui_.getGameMenuPanel().setState(1);
+        }
+
+        level_.reset();
         start();
-    }    
+    }
 }
