@@ -240,6 +240,7 @@ public class GameScene {
         life_ = new Life(3);
         score_ = new Score(0);
         activeBonuses_.clear();
+        paddle_ = null;
 
         if (ui_.getGameMenuPanel() != null) {
             ui_.getGameMenuPanel().setState(1);
