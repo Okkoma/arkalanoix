@@ -10,7 +10,9 @@ public class Score {
 	
     public void draw(IRenderer renderer) {
 		renderer.setFill(Color.WHITE);
-    	renderer.fillText(Integer.toString(score_), GameContext.getScreenWidth() / 2, 28, "Arial", 24, 1, 1);
+    	renderer.fillText(Integer.toString(score_), GameContext.getScreenWidth() / 2, 
+						GameContext.bigFontSize_ + 5, "Arial", 
+						GameContext.bigFontSize_, 1, 1);
     }
     
     public void increase(int amount) {

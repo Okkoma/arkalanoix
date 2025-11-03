@@ -32,8 +32,9 @@ public class Bonus extends GameObject {
             renderer.setFill(color_);
             renderer.fillOval(rect_.getMinX(), rect_.getMinY(), rect_.getWidth(), rect_.getHeight());
         	renderer.setFill(Color.WHITE);
-        	renderer.fillText(Integer.toString(type_), rect_.getMinX() + rect_.getWidth() / 2, rect_.getMinY() + rect_.getHeight() / 2, 
-                    "Arial", 16, 1, 1);            
+        	renderer.fillText(Integer.toString(type_), rect_.getMinX() + rect_.getWidth() / 2,
+                    rect_.getMinY() + rect_.getHeight() / 2,
+                    "Arial", GameContext.smallFontSize_, 1, 1);
         }
     }
 

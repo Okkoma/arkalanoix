@@ -79,14 +79,14 @@ public class GameSceneAndroid extends SurfaceView
     @Override
     public boolean onDown(MotionEvent event) {
         Log.d(DEBUG_TAG,"onDown: " + event.toString());
-        return true;
+        return false;
     }
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
                            float velocityX, float velocityY) {
         Log.d(DEBUG_TAG, "onFling: " + event1.toString() + event2.toString());
-        return true;
+        return false;
     }
 
     @Override
@@ -98,13 +98,7 @@ public class GameSceneAndroid extends SurfaceView
     public boolean onScroll(MotionEvent event1, MotionEvent event2, float distanceX,
                             float distanceY) {
         //Log.d(DEBUG_TAG, "onScroll: " + event1.toString() + event2.toString());
-
-        if (distanceX > 0)
-            gameScene_.leftPressed_ = true;
-        else
-            gameScene_.rightPressed_ = true;
-
-        return true;
+        return false;
     }
 
     @Override
@@ -115,27 +109,27 @@ public class GameSceneAndroid extends SurfaceView
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
         //Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
-        return true;
+        return false;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent event) {
         Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
         togglePause();
-        return true;
+        return false;
     }
 
     @Override
     public boolean onDoubleTapEvent(MotionEvent event) {
         //Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
-        return true;
+        return false;
     }
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         gameScene_.spacePressed_ = true;
-        return true;
+        return false;
     }
 
     @Override
@@ -149,6 +143,9 @@ public class GameSceneAndroid extends SurfaceView
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         GameContext.setScreenWidth(width);
         GameContext.setScreenHeight(height);
+        GameContext.smallFontSize_ = height / 40;
+        GameContext.mediumFontSize_ = height / 30;
+        GameContext.bigFontSize_ = height / 20;
         Log.i(APP_TAG, String.format("GameSceneAndroid surfaceChanged w:%d h:%d\n", width, height));
     }
 

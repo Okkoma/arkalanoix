@@ -73,11 +73,11 @@ public class RendererAndroid implements IRenderer {
             case 0: // BASELINE
                 textY = (float) y;
                 break;
-            case 1: // TOP
-                textY = (float) y - fm.ascent;
-                break;
-            case 2: // CENTER
+            case 1: // CENTER
                 textY = (float) y - (fm.ascent + fm.descent) / 2;
+                break;
+            case 2: // TOP
+                textY = (float) y - fm.ascent;
                 break;
             case 3: // BOTTOM
                 textY = (float) y - fm.descent;

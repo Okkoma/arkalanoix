@@ -187,6 +187,7 @@ public class Level {
 		}
 		
     	renderer.setFill(Color.WHITE);
-    	renderer.fillText(Integer.toString(levelId_), 4, 22, "Arial", 18, 0, 1);
+    	renderer.fillText(Integer.toString(levelId_), 4, GameContext.bigFontSize_ + 5,
+                "Arial", GameContext.bigFontSize_, 0, 1);
 	} 
 }

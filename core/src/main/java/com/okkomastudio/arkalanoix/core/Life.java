@@ -18,7 +18,9 @@ public class Life {
 	
     public void draw(IRenderer renderer) {
     	renderer.setFill(Color.WHITE);
-    	renderer.fillText(Integer.toString(life_), GameContext.getScreenWidth() / 2, GameContext.getScreenHeight() - 18, "Arial", 18, 1, 1);
+    	renderer.fillText(Integer.toString(life_), GameContext.getScreenWidth() / 2,
+                GameContext.getScreenHeight() - GameContext.bigFontSize_,
+                "Arial", GameContext.bigFontSize_, 1, 1);
     }
     
     public int get() {
