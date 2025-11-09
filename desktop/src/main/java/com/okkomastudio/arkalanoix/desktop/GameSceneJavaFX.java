@@ -8,9 +8,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 public class GameSceneJavaFX extends Pane implements IControllableScene {
     private final Canvas canvas_;
     private GameScene gameScene_;
+
+    private static Logger Log = LogManager.getLogger();
 
     public GameSceneJavaFX(StackPane root) {
 
@@ -25,7 +30,7 @@ public class GameSceneJavaFX extends Pane implements IControllableScene {
         // togglePause if unfocus
         focusedProperty().addListener((obs, oldVal, newVal) -> {
         	if (newVal == false && gameScene_.isPlaying_) {
-        		System.out.println("Focus changed : " + newVal);
+                Log.info("Focus changed : {}" + newVal);
         		togglePause();
         	}
         });
@@ -99,24 +104,28 @@ public class GameSceneJavaFX extends Pane implements IControllableScene {
 
     @Override
     public void restartGame() {
+        Log.info("restartGame called");
         gameScene_.restartGame();
         requestFocus();
     }
 
     @Override
     public void togglePause() {
+        Log.info("togglePause called");
         gameScene_.togglePause();
         requestFocus();
     }
 
     @Override
     public void nextLevel() {
+        Log.info("nextLevel called");
         gameScene_.nextLevel();
         requestFocus();
     }
 
     @Override
     public void focus() {
+        Log.info("focus called");
         requestFocus();
     }    
 }

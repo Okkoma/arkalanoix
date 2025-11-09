@@ -9,6 +9,8 @@ java {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.apache.logging.log4j:log4j-api:2.25.2'
+    runtimeOnly 'com.celeral:log4j2-android:1.0.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
     testImplementation 'junit:junit:4.13.2'
 }

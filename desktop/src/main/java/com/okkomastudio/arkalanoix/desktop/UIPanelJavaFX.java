@@ -7,7 +7,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 public abstract class UIPanelJavaFX extends StackPane implements IUIPanel {
+
+    private static final Logger Log = LogManager.getLogger();
 
     private final String name_;
     private int state_ = 0;
@@ -33,14 +38,14 @@ public abstract class UIPanelJavaFX extends StackPane implements IUIPanel {
     	
         this.setVisible(true);
         this.toFront();
-        System.out.printf("GameUI : %s show.\n", name_);
+        Log.info("GameUI : {} show.", name_);
     }
 
     @Override
     public void hide() {
     	
         this.setVisible(false);
-        System.out.printf("GameUI : %s hide.\n", name_);
+        Log.info("GameUI : {} hide.", name_);
     }
 
     @Override

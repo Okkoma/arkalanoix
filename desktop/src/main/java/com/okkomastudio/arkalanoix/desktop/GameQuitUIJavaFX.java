@@ -3,6 +3,7 @@ package com.okkomastudio.arkalanoix.desktop;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+
 import javafx.geometry.Pos;
 
 public class GameQuitUIJavaFX extends UIPanelJavaFX {
@@ -41,7 +42,5 @@ public class GameQuitUIJavaFX extends UIPanelJavaFX {
         
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-
-        System.out.println("GameQuitUI set");
     }
 }

@@ -98,8 +98,6 @@ public class Level {
 	    final int borderx = (GameContext.getScreenWidth() - bricksWidth) / 2;
 	    final int bordery = getTopBorder();
 	    
-		System.out.printf("Level create bricks w:%s \n", GameContext.getScreenWidth());
-
 	    bricks_ = new Brick[rows * cols];
 
 	    for (int i = 0; i < rows; i++) {

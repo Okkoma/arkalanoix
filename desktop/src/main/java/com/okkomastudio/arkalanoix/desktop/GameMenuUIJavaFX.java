@@ -3,6 +3,7 @@ package com.okkomastudio.arkalanoix.desktop;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+
 import javafx.geometry.Pos;
 
 public class GameMenuUIJavaFX extends UIPanelJavaFX {
@@ -42,14 +43,11 @@ public class GameMenuUIJavaFX extends UIPanelJavaFX {
         
         // Ajout au StackPane
         this.getChildren().add(menuBox);
-
-        System.out.println("GameMenuUI set");
     }
     
     @Override
     public void setState(int state) {
     	
-    	System.out.println("GameMenuUI setState " + state);
     	super.setState(state);
         continueButton.setText(state == 0 ? "Commencer" : "Continuer");
 

@@ -8,7 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.StackPane;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 public class Game extends Application {
+
+    private static Logger Log = LogManager.getLogger();
 
     @Override
     public void start(Stage primaryStage) {
@@ -43,8 +48,8 @@ public class Game extends Application {
     
     public static void main(String[] args) {
     	
-        System.out.println("Game Started ...");
+        Log.info("Game Started ...");
         launch(args);
-        System.out.println("Game Exit.");
+        Log.info("Game Exit.");
     }
 }

@@ -2,7 +2,12 @@ package com.okkomastudio.arkalanoix.core;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 public class GameScene {
+
+    private static final Logger Log = LogManager.getLogger(GameScene.class);
 
 	public IGameUI ui_;
 	public IRenderer renderer_;
@@ -75,8 +80,9 @@ public class GameScene {
     		break;    		
     	}
     	
-    	if (type < Bonus.BonusType.Max)
-    		System.out.println("Apply Bonus : " + Bonus.BonusType.Names[type] + "  " + type);
+    	if (type < Bonus.BonusType.Max) {
+            Log.info("Apply Bonus : {} {}", Bonus.BonusType.Names[type], type);
+        }
     }
 
     public void update() {
@@ -166,25 +172,25 @@ public class GameScene {
     public void gameOver() {
     	
     	isPlaying_ = false;
-    	System.out.println("Game Over!");
-    	if (ui_.getGameMenuPanel() != null)
+    	Log.info("Game Over!");
+    	if (ui_ != null && ui_.getGameMenuPanel() != null)
     		ui_.getGameMenuPanel().setState(0);    	
-    	if (ui_.getGameOverPanel() != null)
+    	if (ui_ != null && ui_.getGameOverPanel() != null)
     		ui_.getGameOverPanel().show();    
     }
     
     public void gameWin() {
     	
     	isPlaying_ = false;
-    	System.out.println("Game Win!");
-    	if (ui_.getGameWinPanel() != null)
+    	Log.info("Game Win!");
+    	if (ui_ != null && ui_.getGameWinPanel() != null)
     		ui_.getGameWinPanel().show();
     }
 
     public void addBonus(Bonus bonus) {
     	activeBonuses_.add(bonus);
     }
-    
+
     public void togglePause() {
         if (isPlaying_) {
             pause();
@@ -195,14 +201,14 @@ public class GameScene {
 
     public void pause() {
         isPlaying_ = false;
-        if (ui_.getGameMenuPanel() != null) {
+        if (ui_ != null && ui_.getGameMenuPanel() != null) {
             ui_.getGameMenuPanel().show();
         }
     }
 
     public void resume() {
         isPlaying_ = true;
-        if (ui_.getGameMenuPanel() != null) {
+        if (ui_ != null && ui_.getGameMenuPanel() != null) {
             ui_.getGameMenuPanel().hide();
         }
     }
@@ -214,26 +220,26 @@ public class GameScene {
             final int paddleHeight = paddleWidth / 10;
             paddle_ = new Paddle(GameContext.getScreenWidth() / 2, Math.min(3 * level_.getBottomBorder() / 2, GameContext.getScreenHeight() - 50),
                     paddleWidth, paddleHeight, Color.WHITE);
-            System.out.println("New paddle.");
+            Log.info("New paddle.");
         }
 
-        System.out.println("New ball.");
+        Log.info("New ball.");
         balls_.clear();
         balls_.add(new Ball(0, 0, GameContext.getScreenWidth() / 80, Color.WHITE));
         balls_.get(0).stickOn(paddle_, true);
 
         isPlaying_ = true;     
     }
-    
+
     public void nextLevel() {
     	
-    	System.out.println("Level Finished!");
+    	Log.info("Level Finished!");
         
     	level_.next();
         level_.reset();
         start();
     }
-    
+
     public void restartGame() {
 
         // Réinitialiser le jeu
@@ -242,7 +248,7 @@ public class GameScene {
         activeBonuses_.clear();
         paddle_ = null;
 
-        if (ui_.getGameMenuPanel() != null) {
+        if (ui_ != null && ui_.getGameMenuPanel() != null) {
             ui_.getGameMenuPanel().setState(1);
         }
 
