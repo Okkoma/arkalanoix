@@ -1,5 +1,6 @@
 package com.okkomastudio.arkalanoix.android;
 
+import com.okkomastudio.arkalanoix.core.IControllableScene;
 import com.okkomastudio.arkalanoix.core.IUIPanel;
 
 import android.os.Looper;
@@ -15,11 +16,11 @@ public abstract class UIPanelAndroid extends FrameLayout implements IUIPanel {
     private String name_;
     private int state_ = 0;
 
-    protected GameSceneAndroid gameScene_;
+    protected IControllableScene gameScene_;
 
     private static Handler mainHandler_;
 
-    public UIPanelAndroid(Context context, String name, GameSceneAndroid gameScene) {
+    public UIPanelAndroid(Context context, String name, IControllableScene gameScene) {
         super(context);
         gameScene_ = gameScene;
         name_ = name;
@@ -68,7 +69,7 @@ public abstract class UIPanelAndroid extends FrameLayout implements IUIPanel {
             @Override
             public void run() {
                 setVisibility(View.GONE);
-                gameScene_.requestFocus();
+                gameScene_.focus();
             }
         });
         System.out.printf("GameUI : %s hide.\n", name_);

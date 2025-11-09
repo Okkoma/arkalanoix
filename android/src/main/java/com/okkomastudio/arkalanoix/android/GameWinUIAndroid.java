@@ -1,5 +1,7 @@
 package com.okkomastudio.arkalanoix.android;
 
+import com.okkomastudio.arkalanoix.core.IControllableScene;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -14,7 +16,7 @@ public class GameWinUIAndroid extends UIPanelAndroid {
     private TextView text;
     private Button replayButton;
 
-    public GameWinUIAndroid(Context context, GameSceneAndroid gameScene) {
+    public GameWinUIAndroid(Context context, IControllableScene gameScene) {
         super(context, "GameWinUI", gameScene);
     }
 

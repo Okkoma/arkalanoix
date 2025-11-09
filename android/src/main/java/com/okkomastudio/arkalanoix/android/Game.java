@@ -17,11 +17,12 @@ public class Game extends Activity {
         mainContainer = new FrameLayout(this);
 
         // Créer la scène de jeu
-        gameScene_ = new GameSceneAndroid(this, mainContainer);
+        gameScene_ = new GameSceneAndroid(this);
         mainContainer.addView(gameScene_, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
        
         // Définir la vue principale
         setContentView(mainContainer);
+        gameScene_.setUIContainer(mainContainer);
     }
 
     @Override

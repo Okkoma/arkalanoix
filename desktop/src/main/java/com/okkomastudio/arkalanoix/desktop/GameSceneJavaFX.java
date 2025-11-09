@@ -1,5 +1,6 @@
 package com.okkomastudio.arkalanoix.desktop;
 
+import com.okkomastudio.arkalanoix.core.IControllableScene;
 import com.okkomastudio.arkalanoix.core.GameScene;
 import com.okkomastudio.arkalanoix.core.GameContext;
 
@@ -7,7 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-public class GameSceneJavaFX extends Pane {
+public class GameSceneJavaFX extends Pane implements IControllableScene {
     private final Canvas canvas_;
     private GameScene gameScene_;
 
@@ -18,8 +19,7 @@ public class GameSceneJavaFX extends Pane {
         this.getChildren().add(canvas_);
 
         gameScene_.renderer_ = new RendererJavaFX(canvas_.getGraphicsContext2D());
-        gameScene_.ui_ = new GameUIJavaFX(this, (StackPane)root);
-
+        
         setFocusTraversable(true);
 
         // togglePause if unfocus
@@ -27,7 +27,6 @@ public class GameSceneJavaFX extends Pane {
         	if (newVal == false && gameScene_.isPlaying_) {
         		System.out.println("Focus changed : " + newVal);
         		togglePause();
-                requestFocus();
         	}
         });
     
@@ -80,6 +79,11 @@ public class GameSceneJavaFX extends Pane {
             }
         });
     }
+    
+    public void setUIContainer(StackPane container) {
+        gameScene_.ui_ = new GameUIJavaFX(this, container);
+        gameScene_.ui_.setContainer(container);    
+    }
 
     public boolean isPlaying() {
         return gameScene_.isPlaying_;
@@ -91,20 +95,28 @@ public class GameSceneJavaFX extends Pane {
 
     public void render() {
         gameScene_.render();
-    }    
-    
+    }
+
+    @Override
+    public void restartGame() {
+        gameScene_.restartGame();
+        requestFocus();
+    }
+
+    @Override
     public void togglePause() {
         gameScene_.togglePause();
         requestFocus();
     }
 
+    @Override
     public void nextLevel() {
         gameScene_.nextLevel();
         requestFocus();
     }
 
-    public void restartGame() {
-        gameScene_.restartGame();
+    @Override
+    public void focus() {
         requestFocus();
-    }
+    }    
 }

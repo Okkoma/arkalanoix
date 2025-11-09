@@ -18,7 +18,8 @@ public class Game extends Application {
 
         // Créer la scène de jeu
         GameSceneJavaFX gameScene = new GameSceneJavaFX(root);
-                
+        gameScene.setUIContainer(root);
+
         // Créer la scène avec le StackPane comme racine
         Scene scene = new Scene(root, GameContext.getScreenWidth(), GameContext.getScreenHeight());
         

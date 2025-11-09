@@ -1,5 +1,7 @@
 package com.okkomastudio.arkalanoix.android;
 
+import com.okkomastudio.arkalanoix.core.IControllableScene;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -15,7 +17,7 @@ public class GameMenuUIAndroid extends UIPanelAndroid {
     private Button continueButton;
     private Button quitButton;
     
-    public GameMenuUIAndroid(Context context, GameSceneAndroid gameScene) {
+    public GameMenuUIAndroid(Context context, IControllableScene gameScene) {
         super(context, "GameMenuUI", gameScene);
     }
 

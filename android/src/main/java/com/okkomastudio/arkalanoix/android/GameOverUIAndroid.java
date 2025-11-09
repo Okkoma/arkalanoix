@@ -1,5 +1,7 @@
 package com.okkomastudio.arkalanoix.android;
 
+import com.okkomastudio.arkalanoix.core.IControllableScene;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -15,7 +17,7 @@ public class GameOverUIAndroid extends UIPanelAndroid {
     private Button replayButton;
     private Button quitButton;
     
-    public GameOverUIAndroid(Context context, GameSceneAndroid gameScene) {
+    public GameOverUIAndroid(Context context, IControllableScene gameScene) {
         super(context, "GameOverUI", gameScene);
     }
 

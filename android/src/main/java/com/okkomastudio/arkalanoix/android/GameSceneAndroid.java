@@ -1,14 +1,18 @@
 package com.okkomastudio.arkalanoix.android;
 
 import com.okkomastudio.arkalanoix.core.GameScene;
+import com.okkomastudio.arkalanoix.core.IControllableScene;
 import com.okkomastudio.arkalanoix.core.GameContext;
 
 import android.content.Context;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
+
 import androidx.core.view.GestureDetectorCompat;
+
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -20,7 +24,9 @@ import android.util.Log;
 public class GameSceneAndroid extends SurfaceView
         implements SurfaceHolder.Callback, Runnable,
         GestureDetector.OnGestureListener,
-        GestureDetector.OnDoubleTapListener {
+        GestureDetector.OnDoubleTapListener,
+        IControllableScene {
+
     private SurfaceHolder holder;
     private Thread thread;
     private Canvas canvas_;
@@ -31,7 +37,7 @@ public class GameSceneAndroid extends SurfaceView
     private static final String APP_TAG = "App";
     private GestureDetectorCompat gestureDetector_;
 
-    public GameSceneAndroid(Context context, ViewGroup container) {
+    public GameSceneAndroid(Context context) {
         super(context);
 
         gameScene_ = new GameScene();
@@ -46,12 +52,15 @@ public class GameSceneAndroid extends SurfaceView
         // Instantiate the gesture detector with the
         // application context and an implementation of
         // GestureDetector.OnGestureListener.
-        gestureDetector_ = new GestureDetectorCompat(context,this);
+        gestureDetector_ = new GestureDetectorCompat(context, this);
         // Set the gesture detector as the double-tap
         // listener.
         gestureDetector_.setOnDoubleTapListener(this);
-        // Create ui
-        gameScene_.ui_ = new GameUIAndroid(this, container);
+    }
+
+    public void setUIContainer(ViewGroup container) {
+        gameScene_.ui_ = new GameUIAndroid(getContext(), this);
+        gameScene_.ui_.setContainer(container);
     }
 
     @Override
@@ -146,7 +155,9 @@ public class GameSceneAndroid extends SurfaceView
         GameContext.smallFontSize_ = height / 40;
         GameContext.mediumFontSize_ = height / 30;
         GameContext.bigFontSize_ = height / 20;
-        Log.i(APP_TAG, String.format("GameSceneAndroid surfaceChanged w:%d h:%d\n", width, height));
+        Log.i(APP_TAG, String.format("surfaceChanged w:%d h:%d\n", width, height));
+
+        gameScene_.ui_.getGameMenuPanel().show();
     }
 
     @Override
@@ -224,12 +235,7 @@ public class GameSceneAndroid extends SurfaceView
                 }
             }
         }
-    }    
-    
-    public void togglePause() {
-        gameScene_.togglePause();
     }
-
     public void resume() {
         if (gameScene_.paddle_ != null)
             gameScene_.resume();
@@ -238,11 +244,28 @@ public class GameSceneAndroid extends SurfaceView
     public void pause() {
         gameScene_.pause();
     }
+
+    @Override
+    public void restartGame() {
+        Log.i(APP_TAG, "restartGame called");
+        gameScene_.restartGame();
+    }
+
+    @Override
+    public void togglePause() {
+        Log.i(APP_TAG, "togglePause called");
+        gameScene_.togglePause();
+    }
+
+    @Override
     public void nextLevel() {
+        Log.i(APP_TAG, "nextLevel called");
         gameScene_.nextLevel();
     }
 
-    public void restartGame() {
-        gameScene_.restartGame();
-    }
+    @Override
+    public void focus() {
+        Log.i(APP_TAG, "focus called");
+        requestFocus();
+    }      
 }
