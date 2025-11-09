@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application' version '8.13.0'
+    id 'org.jetbrains.kotlin.android' version '1.9.22'
 }
 
 android {
@@ -29,13 +30,22 @@ android {
            // Enable desugaring for Android features
            coreLibraryDesugaringEnabled true
     }
+    
+    kotlinOptions {
+        jvmTarget = '17'
+    }
         
     buildFeatures {
         viewBinding true
+        compose true
     }
     
-    // Désactive la compilation de module-info pour Android
+    composeOptions {
+        kotlinCompilerExtensionVersion = '1.5.10'
+    }
+
     packagingOptions {
+        // Désactive la compilation de module-info pour Android
         exclude 'META-INF/versions/9/module-info.class'
         exclude 'module-info.class'
     }
@@ -43,12 +53,35 @@ android {
 
 dependencies {
     implementation project(':core')
-    
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    
+    // Jetpack Compose
+    def composeBom = platform('androidx.compose:compose-bom:2024.02.00')
+    implementation composeBom
+    androidTestImplementation composeBom
+    
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.activity:activity-compose:1.8.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
+    implementation 'androidx.compose.ui:ui-viewbinding'
+    
+    // Debug tooling
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    
+    // LibGDX
+    implementation "com.badlogicgames.gdx:gdx:1.14.0"
+    implementation "com.badlogicgames.gdx:gdx-backend-android:1.14.0"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.14.0:natives-armeabi-v7a"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.14.0:natives-arm64-v8a"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.14.0:natives-x86"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.14.0:natives-x86_64"
     
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
